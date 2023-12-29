@@ -27,15 +27,15 @@ class HomeCard extends StatelessWidget{
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                buildCard(),
+                buildCard(context),
                 SizedBox(width: 12),
-                buildCard(),
+                buildCard(context),
                 SizedBox(width: 12),
-                buildCard(),
+                buildCard(context),
                 SizedBox(width: 12),
-                buildCard(),
+                buildCard(context),
                 SizedBox(width: 12),
-                buildCard(),
+                buildCard(context),
               ],
             ),
           ),
@@ -45,32 +45,36 @@ class HomeCard extends StatelessWidget{
     );
   }
 
-  Widget buildCard(){
-    return Container(
-      width: 105,
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 100,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://images.unsplash.com/photo-1598638567141-696be94b464a?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  Widget buildCard(BuildContext ctx){
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(ctx, '/supplier');
+      },
+      child: Container(
+        width: 105,
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 100,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://images.unsplash.com/photo-1598638567141-696be94b464a?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  ),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
             ),
-          ),
-          Padding(padding: EdgeInsets.only(top: 10, bottom: 1, left: 2), child: Text('BakuMetal', textAlign: TextAlign.left, style: TextStyle(fontSize: 14.36))),
-          Padding(padding: EdgeInsets.only(top: 5, bottom: 3, left: 2), child: Text('Баку, 4 года., 180 сотруд., 4.5/5.0', style: TextStyle(fontSize: 11.77)))
-        ],
-      ),
-
+            Padding(padding: EdgeInsets.only(top: 10, bottom: 1, left: 2), child: Text('BakuMetal', textAlign: TextAlign.left, style: TextStyle(fontSize: 14.36))),
+            Padding(padding: EdgeInsets.only(top: 5, bottom: 3, left: 2), child: Text('Баку, 4 года., 180 сотруд., 4.5/5.0', style: TextStyle(fontSize: 11.77)))
+          ],
+        ),
+      )
     );
   }
 }

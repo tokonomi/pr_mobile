@@ -8,6 +8,7 @@ class Supplier extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           actions: [
             IconButton(
               icon: Icon(Icons.notifications), // Иконка 1
@@ -18,6 +19,7 @@ class Supplier extends StatelessWidget{
             IconButton(
                 icon: Icon(Icons.home), // Иконка 1
                 onPressed: () {
+                  Navigator.pushNamed(context, '/home');
                   // Обработчик для первой иконки
                 }
             ),

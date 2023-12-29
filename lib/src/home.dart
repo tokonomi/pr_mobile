@@ -36,12 +36,14 @@ class HomeState extends State<Home>{
               ListTile(
                 title: menuText('Мой кабинет'),
                 onTap: () {
+                  Navigator.pushNamed(context, '/cabinet');
                   // Обработчик для Пункта 1
                 },
               ),
               ListTile(
                 title: menuText('Подписки'),
                 onTap: () {
+                  Navigator.pushNamed(context, '/registration');
                   // Обработчик для Пункта 2
                 },
               ),
@@ -66,6 +68,7 @@ class HomeState extends State<Home>{
               ListTile(
                 title: menuText('Настройки'),
                 onTap: () {
+                  Navigator.pushNamed(context, '/user');
                   // Обработчик для Пункта 2
                 },
               ),
@@ -74,6 +77,7 @@ class HomeState extends State<Home>{
         ),
       ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: Icon(Icons.notifications), // Иконка 1

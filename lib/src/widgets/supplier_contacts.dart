@@ -27,7 +27,7 @@ class _SupplierContactsState extends State<SupplierContacts> {
         SizedBox(height: 10.0),
         buildThreeTextsList(),
         SizedBox(height: 8.0),
-        buildFullWidthButton('Посмотреть все товары'),
+        buildFullWidthButton(context, 'Посмотреть все товары'),
         SizedBox(height: 16.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -88,12 +88,12 @@ Widget buildThreeTextsList() {
   );
 }
 
-Widget buildFullWidthButton(String text) {
+Widget buildFullWidthButton(BuildContext ctx, String text) {
   return SizedBox(
     width: double.infinity,
     child: ElevatedButton(
       onPressed: () {
-        // Обработчик нажатия кнопки
+        Navigator.pushNamed(ctx, '/suppliercatalog');
       },
       child: Text(text),
     ),
