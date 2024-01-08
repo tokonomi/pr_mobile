@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Cabinet extends StatelessWidget{
-  @override
+class Cabinet extends StatefulWidget {
+  const Cabinet({super.key});
 
+  @override
+  State<Cabinet> createState() => _CabinetState();
+}
+
+
+class _CabinetState extends State<Cabinet> with TickerProviderStateMixin{
+  @override
   Widget build(BuildContext context){
+    TabController _tabcontroller = TabController(length: 2, vsync: this);
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -30,32 +38,28 @@ class Cabinet extends StatelessWidget{
                 SizedBox(height: 10),
                 Text('В личном кабинете вы сможете найти нужные инструменты для управления своим бизнесом'),
                 SizedBox(height: 10),
-                Text('Последние заказы'),
-                MyCard(),
-                Row(
+                Container(
+                  child: TabBar(
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.grey,
+                    controller: _tabcontroller,
+                    tabs: [
+                      Tab(text: 'Покупки'),
+                      Tab(text: 'Продажи')
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  width: double.maxFinite,
+                  height: 700,
+                  child: TabBarView(
+                    controller: _tabcontroller,
                     children: [
-                      Expanded(
-                        flex: 2,
-                        child: ElevatedButton(
-                        onPressed: () {
-                        // Добавьте вашу логику для кнопки "Оставить отзыв" здесь
-                        print('Оставить отзыв');
-                      },
-                        child: Text('Оставить отзыв'),
-                      )
-                      ),
-                      SizedBox(width: 9),
-                      Expanded(
-                          flex: 2,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Добавьте вашу логику для кнопки "Оставить отзыв" здесь
-                              print('Оставить отзыв');
-                            },
-                            child: Text('Дополнительные сведения'),
-                          )
-                      )
-                    ]
+                      Buys(),
+                      MySells()
+                    ],
+                  ),
                 )
               ],
             ),
@@ -64,6 +68,292 @@ class Cabinet extends StatelessWidget{
     );
   }
 }
+
+class Buys extends StatelessWidget {
+  const Buys({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 600,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text('Последние заказы'),
+          MyCard(),
+          Row(
+              children: [
+                Expanded(
+                    flex: 2,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Добавьте вашу логику для кнопки "Оставить отзыв" здесь
+                        print('Оставить отзыв');
+                      },
+                      child: Text('Оставить отзыв'),
+                    )
+                ),
+                SizedBox(width: 9),
+                Expanded(
+                    flex: 2,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Добавьте вашу логику для кнопки "Оставить отзыв" здесь
+                        print('Оставить отзыв');
+                      },
+                      child: Text('Дополнительные сведения'),
+                    )
+                )
+              ]
+          ),
+          MyCard(),
+          Row(
+              children: [
+                Expanded(
+                    flex: 2,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Добавьте вашу логику для кнопки "Оставить отзыв" здесь
+                        print('Оставить отзыв');
+                      },
+                      child: Text('Оставить отзыв'),
+                    )
+                ),
+                SizedBox(width: 9),
+                Expanded(
+                    flex: 2,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Добавьте вашу логику для кнопки "Оставить отзыв" здесь
+                        print('Оставить отзыв');
+                      },
+                      child: Text('Дополнительные сведения'),
+                    )
+                )
+              ]
+          ),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                    onPressed: (){
+
+                    },
+                    child: Text('Избранные: 25', style: TextStyle(fontSize: 16),)
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                ElevatedButton(
+                    onPressed: (){
+
+                    },
+                    child: Text('Посмотреть все заказы')
+                )
+              ],
+            ),
+          ),
+          ElevatedButton(
+              onPressed: (){
+
+              },
+              style: ButtonStyle(
+                  alignment: Alignment.centerLeft
+              ),
+              child: Text('Сообщение')
+          ),
+          ElevatedButton(
+              onPressed: (){
+
+              },
+              style: ButtonStyle(
+                  alignment: Alignment.centerLeft
+              ),
+              child: Text('Заказы')
+          ),
+          ElevatedButton(
+              onPressed: (){
+
+              },
+              style: ButtonStyle(
+                  alignment: Alignment.centerLeft
+              ),
+              child: Text('Транзакции')
+          ),
+
+        ],
+      ),
+    );
+  }
+}
+
+class MySells extends StatelessWidget {
+  const MySells({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Text('Ваш рейтинг'),
+              ElevatedButton(
+                  onPressed: (){
+
+                  },
+                  child: Text('Добавить товар')
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Text('Сортировка продуктов'),
+              DropdownButton(items: [
+                DropdownMenuItem(child: Text('Option 1'), value: 'option1',),
+                DropdownMenuItem(child: Text('Option 1'), value: 'option1',),
+                DropdownMenuItem(child: Text('Option 1'), value: 'option1',),
+              ], onChanged: (value){})
+            ],
+          ),
+          Column(
+            children: [
+              Text('Поиск'),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Введите название продукта',
+                ),
+              ),
+              SizedBox(height: 0), // Пространство между инпутами
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Введите идентификатор продукта',
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  ElevatedButton(
+                      onPressed: (){
+
+                      },
+                      child: Text('Добавить товар')
+                  ),
+                  SizedBox(width: 10),
+                  ElevatedButton(
+                      onPressed: (){
+
+                      },
+                      child: Text('Добавить товар')
+                  )
+                ],
+              )
+            ],
+          ),
+          Container(
+            child: Column(
+              children: [
+                Text('Список товаров'),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    columns: [
+                      DataColumn(label: Text('Выбор')),
+                      DataColumn(label: Text('Название продукта')),
+                      DataColumn(label: Text('Категории')),
+                      DataColumn(label: Text('Цена')),
+                      DataColumn(label: Text('Локация')),
+                      DataColumn(label: Text('Статус')),
+                    ],
+                    rows: [
+                      DataRow(
+                        cells: [
+                          DataCell(
+                            Checkbox(
+                              value: true,
+                              onChanged: (value) {},
+                            ),
+                          ),
+                          DataCell(Text('Продукт 1')),
+                          DataCell(Text('Категория 1')),
+                          DataCell(Text('\$19.99')),
+                          DataCell(Text('Местоположение 1')),
+                          DataCell(Text('Активен')),
+                        ],
+                        color: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return Colors.blue.withOpacity(0.5);
+                            }
+                            return Colors.blue.withOpacity(0);
+                          },
+                        ),
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(
+                            Checkbox(
+                              value: false,
+                              onChanged: (value) {},
+                            ),
+                          ),
+                          DataCell(Text('Продукт 2')),
+                          DataCell(Text('Категория 2')),
+                          DataCell(Text('\$29.99')),
+                          DataCell(Text('Местоположение 2')),
+                          DataCell(Text('Неактивен')),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ElevatedButton(
+              onPressed: (){
+
+              },
+              style: ButtonStyle(
+                  alignment: Alignment.centerLeft
+              ),
+              child: Text('Сообщение')
+          ),
+          ElevatedButton(
+              onPressed: (){
+
+              },
+              style: ButtonStyle(
+                  alignment: Alignment.centerLeft
+              ),
+              child: Text('Заказы')
+          ),
+          ElevatedButton(
+              onPressed: (){
+
+              },
+              style: ButtonStyle(
+                  alignment: Alignment.centerLeft
+              ),
+              child: Text('Транзакции')
+          ),
+          ElevatedButton(
+              onPressed: (){
+
+              },
+              style: ButtonStyle(
+                  alignment: Alignment.centerLeft
+              ),
+              child: Text('Транзакции')
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 class MyCard extends StatelessWidget {
   @override
